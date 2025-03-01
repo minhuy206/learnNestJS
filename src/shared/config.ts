@@ -39,7 +39,7 @@ const configServer = plainToInstance(ConfigSchema, process.env, {
   // Enable implicit conversion
   enableImplicitConversion: true,
 })
-console.log(configServer)
+
 const error = validateSync(configServer)
 
 if (error.length > 0) {
