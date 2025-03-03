@@ -10,6 +10,15 @@ export class LoginBodyDTO {
   password: string
 }
 
+export class LoginResponseDTO {
+  accessToken: string
+  refreshToken: string
+
+  constructor(partial: Partial<LoginResponseDTO>) {
+    Object.assign(this, partial)
+  }
+}
+
 export class RegisterBodyDTO extends LoginBodyDTO {
   @IsString({ message: 'Name must be a string' })
   name: string
