@@ -1,5 +1,6 @@
 import { Exclude, Type } from 'class-transformer'
 import { IsString } from 'class-validator'
+import { IsMatch } from 'src/shared/decorators/IsMatch.decorator'
 import { SuccessResponseDTO } from 'src/shared/shared.dto'
 
 export class LoginBodyDTO {
@@ -12,6 +13,8 @@ export class LoginBodyDTO {
 
 export class LoginResponseDTO {
   accessToken: string
+
+  @IsString()
   refreshToken: string
 
   constructor(partial: Partial<LoginResponseDTO>) {
@@ -24,6 +27,7 @@ export class RegisterBodyDTO extends LoginBodyDTO {
   name: string
 
   @IsString()
+  @IsMatch('password', { message: 'Password does not match' })
   confirmPassword: string
 }
 
@@ -49,3 +53,5 @@ export class RegisterResponseDTO extends SuccessResponseDTO {
     Object.assign(this, partial)
   }
 }
+
+export class RefreshTokenResponseDTO extends LoginResponseDTO {}
