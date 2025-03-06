@@ -55,3 +55,13 @@ export class RegisterResponseDTO extends SuccessResponseDTO {
 }
 
 export class RefreshTokenResponseDTO extends LoginResponseDTO {}
+
+export class LogoutBodyDTO extends RefreshTokenResponseDTO {}
+
+export class LogoutResDTO {
+  message: string
+
+  constructor(partial: Partial<LogoutResDTO>) {
+    Object.assign(this, partial)
+  }
+}
