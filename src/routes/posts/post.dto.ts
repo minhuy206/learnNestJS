@@ -1,4 +1,5 @@
 import { Type } from 'class-transformer'
+import { IsString } from 'class-validator'
 import { PostModel } from 'src/shared/models/post.model'
 import { UserModel } from 'src/shared/models/user.model'
 
@@ -11,3 +12,17 @@ export class GetPostItemDTO extends PostModel {
     Object.assign(this, partial)
   }
 }
+
+export class CreatePostBodyDTO {
+  @IsString()
+  title: string
+
+  @IsString()
+  content: string
+
+  constructor(partial: Partial<CreatePostBodyDTO>) {
+    Object.assign(this, partial)
+  }
+}
+
+export class UpdatePostBodyDTO extends CreatePostBodyDTO {}
